@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0e3tm2u6y5pe"]
+
+[ext_resource type="Shader" path="res://character/orb1.gdshader" id="1_b7ivt"]
+
+[resource]
+render_priority = 127
+shader = ExtResource("1_b7ivt")
+shader_parameter/base_color = Vector3(0, 0.2, 1)

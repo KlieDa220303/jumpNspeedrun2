@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtc5gi3kfwlov"]
+
+[ext_resource type="Script" path="res://levels/goal.gd" id="1_4qdtk"]
+[ext_resource type="Material" uid="uid://cjr8he5trnvby" path="res://levels/goal.tres" id="2_3sbuy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w31xa"]
+lightmap_size_hint = Vector2i(14, 21)
+material = ExtResource("2_3sbuy")
+subdivide_depth = 6
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gw7t5"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="goal" type="Node3D"]
+script = ExtResource("1_4qdtk")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_w31xa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_gw7t5")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

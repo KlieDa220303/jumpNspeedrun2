@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbh8wrnl1i05"]
+
+[ext_resource type="Script" path="res://Music.gd" id="1_i4cna"]
+[ext_resource type="AudioStream" uid="uid://xsher3jctsib" path="res://music/srwt,mhrt_3.wav" id="2_d3wry"]
+[ext_resource type="AudioStream" uid="uid://bwf5g4lw1kdlp" path="res://music/outdoors.wav" id="3_02o7r"]
+[ext_resource type="AudioStream" uid="uid://52d6nl5kityr" path="res://music/indoors.wav" id="4_50sm7"]
+
+[node name="Music" type="Node" node_paths=PackedStringArray("music_player")]
+script = ExtResource("1_i4cna")
+music_player = NodePath("AudioStreamPlayer")
+track_1 = ExtResource("2_d3wry")
+track_2 = ExtResource("3_02o7r")
+track_3 = ExtResource("4_50sm7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

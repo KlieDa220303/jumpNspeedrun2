@@ -1,0 +1,125 @@
+[gd_scene load_steps=13 format=3 uid="uid://beom2f6fk80u6"]
+
+[ext_resource type="Script" path="res://GUI/main_menu.gd" id="1_e0k8x"]
+[ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="1_ukdih"]
+[ext_resource type="Script" path="res://GUI/MeshInstance3D.gd" id="2_1qeco"]
+[ext_resource type="Shader" path="res://textures/shaders/outline.gdshader" id="2_cghrr"]
+[ext_resource type="Script" path="res://GUI/text2.gd" id="3_1s2ke"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22qvk"]
+albedo_texture = ExtResource("1_ukdih")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1m7tr"]
+flip_faces = true
+
+[sub_resource type="TextMesh" id="TextMesh_36ula"]
+text = "Jump and Speedrun"
+font_size = 35
+depth = 0.04
+
+[sub_resource type="TextMesh" id="TextMesh_a4blt"]
+text = "2"
+font_size = 100
+depth = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wco12"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uuau1"]
+render_priority = 0
+shader = ExtResource("2_cghrr")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/size = 1.05
+
+[sub_resource type="BoxMesh" id="BoxMesh_tut4k"]
+
+[node name="main menu" type="Node"]
+
+[node name="main menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_e0k8x")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="main menu" groups=["freeze"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="main menu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main menu/ScrollContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="start" type="Button" parent="main menu/ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Start"
+
+[node name="level select" type="Button" parent="main menu/ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Level Select"
+
+[node name="settings" type="Button" parent="main menu/ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Settings"
+
+[node name="quit" type="Button" parent="main menu/ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "quit Game"
+
+[node name="3d enviorment" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.575, 1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3d enviorment"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_22qvk")
+mesh = SubResource("BoxMesh_1m7tr")
+script = ExtResource("2_1qeco")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8)
+light_energy = 2.0
+omni_range = 4.29257
+
+[node name="text" type="MeshInstance3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("TextMesh_36ula")
+
+[node name="text2" type="MeshInstance3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.185, -0.3)
+mesh = SubResource("TextMesh_a4blt")
+script = ExtResource("3_1s2ke")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56008, 4.32538, 0)
+material_override = SubResource("StandardMaterial3D_wco12")
+material_overlay = SubResource("ShaderMaterial_uuau1")
+mesh = SubResource("BoxMesh_tut4k")
+
+[connection signal="resized" from="main menu" to="main menu" method="_on_resized"]
+[connection signal="pressed" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/start" to="main menu" method="_on_start_pressed"]
+[connection signal="pressed" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/settings" to="main menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/quit" to="main menu" method="_on_quit_pressed"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://clwar8gs32r7u"]
+
+[ext_resource type="Script" path="res://character old/grappling_hook_working.gd" id="1_3cik7"]
+[ext_resource type="PackedScene" uid="uid://dhy2a4nrxvu4n" path="res://character old/grapppling_hook.tscn" id="2_yro6g"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8vnqm"]
+height = 0.421295
+radius = 0.251857
+
+[node name="grappling_hook_working" type="Node3D"]
+script = ExtResource("1_3cik7")
+metadata/grappling_hook = true
+
+[node name="grapppling_hook" parent="." instance=ExtResource("2_yro6g")]
+
+[node name="Area3D" type="Area3D" parent="."]
+priority = 1
+metadata/grappling_hook = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_8vnqm")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

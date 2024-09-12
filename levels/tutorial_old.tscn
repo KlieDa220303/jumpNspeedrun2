@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgt68bxnu1ita"]
+
+[ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="1_1li3y"]
+[ext_resource type="PackedScene" path="res://levels/bridge.tscn" id="1_4gqpo"]
+[ext_resource type="PackedScene" uid="uid://4sb747tkh067" path="res://levels/house.tscn" id="2_1oir3"]
+[ext_resource type="PackedScene" uid="uid://cn63u78j3lcqo" path="res://levels/default_physiks_cube.tscn" id="2_gdvpn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81hyq"]
+albedo_texture = ExtResource("1_1li3y")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1ejj"]
+albedo_texture = ExtResource("1_1li3y")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l2k5y"]
+
+[node name="tutorial_buld" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_81hyq")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_a1ejj")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(9, 0, 0, 0, 2, 0, 0, 0, 20, 0, 0.5, -28)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(9, 0, 0, 0, 2, 0, 0, 0, 20, 0, 4.5, -46)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(9, 0, 0, 0, -8.74227e-08, 20, 0, -2, -8.74228e-07, 0, 2.5, -55)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(9, 0, 0, 0, -8.74227e-08, -8.64, 0, 2, -3.77666e-07, 0, 0.5, -37)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(9, 0, 0, 0, 2, 0, 0, 7.10543e-15, 8.64, 0, 11.5, -60)
+
+[node name="house" parent="CSGCombiner3D" instance=ExtResource("2_1oir3")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -10, 6.0051, 13)
+
+[node name="bridge" parent="." instance=ExtResource("1_4gqpo")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 4, -13.9342)
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0524356, 0.0633469)
+use_collision = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1.7, 0, 0, 0, 2.26621, -2.32913, 0, 1.3084, 4.03417, 0, 3.51249, -4)
+mesh = SubResource("PlaneMesh_l2k5y")
+
+[node name="default_physiks-cube" parent="." instance=ExtResource("2_gdvpn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 10, -49)
+
+[node name="default_physiks-cube2" parent="." instance=ExtResource("2_gdvpn")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3, 10, -49)
+
+[node name="default_physiks-cube3" parent="." instance=ExtResource("2_gdvpn")]
+transform = Transform3D(0.866025, 0.5, 0, -0.482963, 0.836516, -0.258819, -0.12941, 0.224144, 0.965926, -1, 10, -49)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
+pixel_size = 0.01
+text = "Use W A S D to move!"
+
+[node name="Label3D2" type="Label3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -22)
+pixel_size = 0.01
+text = "Use [SPACE] to jump!"
+
+[node name="Label3D3" type="Label3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -35.9686)
+pixel_size = 0.01
+text = "Use [SPACE] again to walljump!"
+
+[node name="Label3D4" type="Label3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, -53.9686)
+pixel_size = 0.01
+text = "Use [LMB] to pick up and stack Objects"

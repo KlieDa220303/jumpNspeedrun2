@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://sa4ov8tvndtf"]
+
+[ext_resource type="Script" path="res://GUI/interlevel_screen.gd" id="1_ytk2o"]
+
+[node name="interlevel_Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ytk2o")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "time: "
+
+[node name="time" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "..."
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "best time: "
+
+[node name="best_time" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "..."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = " new best?"
+
+[node name="next_level" type="Button" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "next level"
+
+[node name="retry" type="Button" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "retry"
+
+[node name="menu" type="Button" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "return to main menu"
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/VBoxContainer/next_level" to="." method="_on_next_level_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/VBoxContainer/retry" to="." method="_on_retry_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/VBoxContainer/menu" to="." method="_on_menu_button_down"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn63u78j3lcqo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ebp3d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ko8mh"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="default_physiks-cube" type="RigidBody3D" groups=["grabbable"]]
+max_contacts_reported = 1
+contact_monitor = true
+metadata/grabbable = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ebp3d")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_ko8mh")

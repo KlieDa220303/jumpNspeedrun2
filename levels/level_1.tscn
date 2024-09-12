@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6sskr1r3jhru"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_bpajj"]
+[ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="1_xfhj3"]
+[ext_resource type="PackedScene" uid="uid://cn63u78j3lcqo" path="res://levels/default_physiks_cube.tscn" id="2_pax4e"]
+[ext_resource type="PackedScene" uid="uid://uhfnt3bitx8v" path="res://character old/character.tscn" id="3_8cra8"]
+[ext_resource type="PackedScene" uid="uid://dtc5gi3kfwlov" path="res://levels/goal.tscn" id="4_ck03c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3f1s"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_l020g"]
+sky_material = SubResource("ProceduralSkyMaterial_o3f1s")
+
+[sub_resource type="Environment" id="Environment_uqqpe"]
+background_mode = 2
+sky = SubResource("Sky_l020g")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.784314, 0.807843, 0.839216, 1)
+fog_density = 0.005
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fuuw"]
+albedo_texture = ExtResource("1_xfhj3")
+uv1_triplanar = true
+
+[node name="level1" type="Node3D"]
+script = ExtResource("1_bpajj")
+index = 1
+metadata/level = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uqqpe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8fuuw")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -4)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -28)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -47)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 16, -27)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 12, -12)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 12, -38)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 9, -45)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 14, -39)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 41.5, 18, -35)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 36.5, 18, -40)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 36.5, 8, -42)
+size = Vector3(16, 1, 9)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 41.5, 8, -40)
+size = Vector3(10, 1, 9)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.683013, -0.683013, 0.258819, 0.707107, 0.707107, 0, -0.183013, 0.183013, 0.965926, 36.5, 12, -16.5)
+size = Vector3(10, 1, 6)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.25, 0.933013, -0.258819, 0.0669873, 0.25, 0.965926, -1.46593, 2.62059, -62.584)
+size = Vector3(8, 1, 8)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.185295, 0.308469, 0.933013, 0.25, 0.933013, -0.258819, -0.95035, 0.185295, -0.25, -12.4659, 7.62059, -62.584)
+size = Vector3(8, 1, 8)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-0.87001, 0.0991439, -0.482963, 0.25, 0.933013, -0.258819, 0.42495, -0.345916, -0.836516, -17.4659, 11.6206, -45.584)
+size = Vector3(8, 1, 8)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, 4.5, -43)
+size = Vector3(10, 1, 8)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, 2.5, -43.0438)
+operation = 2
+size = Vector3(6, 2, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, 4, -16)
+size = Vector3(10, 15, 9)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 3)
+operation = 2
+size = Vector3(2, 1, 17)
+
+[node name="default_physiks-cube" parent="." instance=ExtResource("2_pax4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -16)
+
+[node name="default_physiks-cube2" parent="." instance=ExtResource("2_pax4e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 11, -47)
+
+[node name="goal" parent="." instance=ExtResource("4_ck03c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 16.7181, -39)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.413251, 2, -8.49531)
+pixel_size = 0.01
+text = "Use [SHIFT] to crouch!"
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435044, 4, -42.4953)
+pixel_size = 0.01
+text = "Use [SHIFT] and [space] to Crouchjump!"
+
+[node name="character" parent="." instance=ExtResource("3_8cra8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15574, -0.970927)

@@ -1,0 +1,349 @@
+[gd_scene load_steps=5 format=3 uid="uid://bue70eajmjjxg"]
+
+[ext_resource type="Script" path="res://GUI/settings_panel.gd" id="1_2dh0s"]
+[ext_resource type="Script" path="res://GUI/Button.gd" id="2_thbih"]
+
+[sub_resource type="Theme" id="Theme_jdnsu"]
+default_font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_61req"]
+bg_color = Color(0.193127, 0.197005, 0.216396, 0.466667)
+
+[node name="Control" type="Control"]
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = SubResource("Theme_jdnsu")
+script = ExtResource("1_2dh0s")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer"]
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_61req")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator4" type="HSeparator" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+
+[node name="fullscreen" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/fullscreen"]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="Label2" type="CheckButton" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="music_volume" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/music_volume"]
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="value" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/music_volume"]
+layout_mode = 2
+text = "00"
+
+[node name="HScrollBar" type="HSlider" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+
+[node name="sfx_volume" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/sfx_volume"]
+layout_mode = 2
+text = "SFX Volume:"
+
+[node name="value" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/sfx_volume"]
+layout_mode = 2
+text = "00"
+
+[node name="HScrollBar2" type="HSlider" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+
+[node name="Fov" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/Fov"]
+layout_mode = 2
+text = "FOV:"
+
+[node name="value" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/Fov"]
+layout_mode = 2
+text = "00"
+
+[node name="HScrollBar3" type="HSlider" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 10.0
+max_value = 170.0
+value = 75.0
+
+[node name="sensitivity" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/sensitivity"]
+layout_mode = 2
+text = "Sensitivity:"
+
+[node name="value" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/sensitivity"]
+layout_mode = 2
+text = "00"
+
+[node name="HScrollBar4" type="HSlider" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+value = 100.0
+rounded = true
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "up"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "w"
+script = ExtResource("2_thbih")
+action = "custom up"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "left"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "a"
+script = ExtResource("2_thbih")
+action = "custom left"
+index = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "down"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "s"
+script = ExtResource("2_thbih")
+action = "custom down"
+index = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "right"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "d"
+script = ExtResource("2_thbih")
+action = "custom right"
+index = 3
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "jump"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "space"
+script = ExtResource("2_thbih")
+action = "custom jump"
+index = 4
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "escape"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "esc"
+script = ExtResource("2_thbih")
+action = "custom esc"
+index = 5
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Interact"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "lmb"
+script = ExtResource("2_thbih")
+action = "custom interact"
+index = 6
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "crouch"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "shift"
+script = ExtResource("2_thbih")
+action = "custom slide"
+index = 7
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "reset"
+uppercase = true
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "shift"
+script = ExtResource("2_thbih")
+action = "custom reset"
+index = 8
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="apply" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "apply"
+
+[node name="exit" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "exit"
+
+[node name="reset" type="Button" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "reset"
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="toggled" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/fullscreen/Label2" to="." method="_on_label_2_toggled"]
+[connection signal="value_changed" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HScrollBar2" to="." method="_on_h_scroll_bar_2_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HScrollBar3" to="." method="_on_h_scroll_bar_3_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HScrollBar4" to="." method="_on_h_scroll_bar_4_value_changed"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/apply" to="." method="_on_apply_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/exit" to="." method="_on_exit_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="." method="_on_exit_2_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/Button" method="_on_reset_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Button" method="_on_reset_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3/Button" method="_on_reset_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer4/Button" method="_on_reset_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer5/Button" method="_on_reset_button_down"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer4/reset" to="ScrollContainer/PanelContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer6/Button" method="_on_reset_button_down"]

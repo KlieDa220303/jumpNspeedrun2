@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://uhfnt3bitx8v"]
+
+[ext_resource type="Script" path="res://character old/tilt.gd" id="1_cq4lg"]
+[ext_resource type="Script" path="res://character old/character.gd" id="1_lx2ba"]
+[ext_resource type="Script" path="res://character old/hud.gd" id="3_rij35"]
+[ext_resource type="PackedScene" uid="uid://dhy2a4nrxvu4n" path="res://character old/grapppling_hook.tscn" id="6_lrbjs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5jcn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odj46"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vo2uf"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3owcy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ouwno"]
+radius = 0.45
+height = 0.9
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t6k0n"]
+
+[node name="character" type="CharacterBody3D" groups=["freeze"]]
+script = ExtResource("1_lx2ba")
+
+[node name="tilt" type="Node3D" parent="."]
+script = ExtResource("1_cq4lg")
+
+[node name="Camera3D" type="Camera3D" parent="tilt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="grappling_raycast" type="RayCast3D" parent="tilt/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-06, -1, 0, 100, -4.37114e-08, 0, -0.1, -1.1)
+collide_with_areas = true
+
+[node name="grabbRaycast" type="RayCast3D" parent="tilt/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -1.5299e-07, -1, 0, 3.5, -4.37114e-08, 0, -0.1, 0)
+
+[node name="grabbPoint" type="Node3D" parent="tilt/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -2.5)
+
+[node name="grab_weapon_position" type="Node3D" parent="tilt/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.708095, -0.250687, -1.15058)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="tilt/Camera3D/grab_weapon_position"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0449418, 0.115906, 0)
+visible = false
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="grapppling_hook" parent="tilt/Camera3D/grab_weapon_position" instance=ExtResource("6_lrbjs")]
+transform = Transform3D(-1, 0, -8.74228e-08, -9.54626e-09, 0.99402, 0.109197, 8.69e-08, 0.109197, -0.99402, 0, 0, 0)
+
+[node name="grappling_shootpoint" type="Node3D" parent="tilt/Camera3D/grab_weapon_position"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0341463, -0.199553)
+
+[node name="wallclimbshapecast" type="ShapeCast3D" parent="tilt"]
+transform = Transform3D(0.5, 0, 0, 0, 0.15, 0, 0, 0, 0.5, 0, 0.860434, -0.692412)
+shape = SubResource("BoxShape3D_e5jcn")
+target_position = Vector3(0, 0, 0)
+
+[node name="wallcheckReycast" type="ShapeCast3D" parent="tilt"]
+transform = Transform3D(0.5, 0, 0, 0, 1.5, 0, 0, 0, 0.4, 0, 0.00931358, -0.740998)
+shape = SubResource("BoxShape3D_odj46")
+target_position = Vector3(0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_vo2uf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_3owcy")
+
+[node name="slideCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+shape = SubResource("CapsuleShape3D_ouwno")
+disabled = true
+
+[node name="celingCheckRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1.4, 8.74228e-08, 0, -1.22392e-07, -1, 0, -0.103981, 0)
+
+[node name="hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_rij35")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="hud"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 171.0
+offset_bottom = 79.0
+theme_override_constants/separation = 10
+
+[node name="timer" type="RichTextLabel" parent="hud/VBoxContainer"]
+layout_mode = 2
+text = "00.00.00.00"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_t6k0n")
+
+[connection signal="draw_line" from="." to="tilt" method="_on_character_draw_line"]
+[connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
