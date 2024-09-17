@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcnix4j1yj3bw"]
+[gd_scene load_steps=6 format=3 uid="uid://dcnix4j1yj3bw"]
 
 [ext_resource type="Script" path="res://GUI/level_select_screen.gd" id="1_3u6r8"]
+[ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="2_fm756"]
+[ext_resource type="Script" path="res://GUI/MeshInstance3D.gd" id="3_y5lq0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u645"]
+albedo_texture = ExtResource("2_fm756")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_tnpyl"]
+flip_faces = true
 
 [node name="level_select_screen" type="Control"]
 layout_mode = 3
@@ -9,6 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_3u6r8")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -26,6 +38,35 @@ size_flags_vertical = 6
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer/PanelContainer"]
 layout_mode = 2
-columns = 5
+columns = 3
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "return"
+
+[node name="fullrun_label" type="Label" parent="ScrollContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+text = "best fullrun time: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3d enviorment" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.575, 1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3d enviorment"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_8u645")
+mesh = SubResource("BoxMesh_tnpyl")
+script = ExtResource("3_y5lq0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8)
+light_energy = 2.0
+omni_range = 4.29257
 
 [connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/GridContainer/Button" to="." method="_on_button_button_down"]

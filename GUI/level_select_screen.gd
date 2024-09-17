@@ -3,14 +3,20 @@ extends Control
 # Desired aspect ratio (width / height)
 @export var target_aspect_ratio: float = 16.0 / 9.0
 
-@export var custom_scale_factor=2
+@export var custom_scale_factor=1.2
 # Reference resolution for scaling
 @export var reference_resolution: Vector2 = Vector2(1920, 1080)
+#fullrun level reference
+@onready var fullrun_label = $ScrollContainer/PanelContainer/GridContainer/fullrun_label
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	generate_level_buttons()
+	#fullrun label time
+	fullrun_label.text=str("best fullrun time: 
+		",GlobalTime.format_time(GlobalTime._best_full_run_time))
 
 func _on_resized():
 	_adjust_scale_factor()
@@ -64,7 +70,7 @@ func generate_level_buttons():
 		# Load the image for the button's normal state
 		var texture_path = images_folder + "level_" + str(level_index) + ".png"
 		var texture = load(texture_path)
-		print(texture)
+
 		if texture!=null:
 			# Assign the texture to the normal state of the TextureButton
 			texture_button.texture_normal = texture
@@ -90,4 +96,12 @@ func generate_level_buttons():
 # Function called when a level button is pressed
 func _on_level_button_pressed(level_number: int):
 	print("Level ", level_number, " selected")
-	# Add level loading logic here
+	Functions.load_level_with_index(level_number)
+	# Add level loading logic here#done
+
+func _input(event):
+	if Input.is_action_just_pressed("custom esc"):
+		_on_button_button_down()
+
+func _on_button_button_down():
+	Functions.load_scene("res://GUI/main_menu.tscn")

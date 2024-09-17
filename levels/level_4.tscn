@@ -20,12 +20,13 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eq0st"]
-albedo_color = Color(0.839216, 0.815686, 1, 1)
+albedo_color = Color(0.839216, 0.572549, 1, 1)
 albedo_texture = ExtResource("4_0fiea")
 uv1_scale = Vector3(0.4, 0.4, 0.4)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytr25"]
+albedo_color = Color(1, 0.894118, 0, 1)
 albedo_texture = ExtResource("4_0fiea")
 
 [node name="level_4" type="Node3D"]

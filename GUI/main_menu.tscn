@@ -65,7 +65,7 @@ size_flags_vertical = 6
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme_override_constants/separation = 5
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="start" type="Button" parent="main menu/ScrollContainer/PanelContainer/HBoxContainer"]
@@ -87,6 +87,10 @@ text = "Settings"
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "quit Game"
+
+[node name="Button" type="Button" parent="main menu/ScrollContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "v.1.3"
 
 [node name="3d enviorment" type="Node3D" parent="."]
 
@@ -121,5 +125,7 @@ mesh = SubResource("BoxMesh_tut4k")
 
 [connection signal="resized" from="main menu" to="main menu" method="_on_resized"]
 [connection signal="pressed" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/start" to="main menu" method="_on_start_pressed"]
+[connection signal="button_down" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/level select" to="main menu" method="_on_level_select_button_down"]
 [connection signal="pressed" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/settings" to="main menu" method="_on_settings_pressed"]
 [connection signal="pressed" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/quit" to="main menu" method="_on_quit_pressed"]
+[connection signal="button_down" from="main menu/ScrollContainer/PanelContainer/HBoxContainer/Button" to="main menu" method="_on_button_button_down"]

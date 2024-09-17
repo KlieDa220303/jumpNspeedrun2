@@ -41,23 +41,10 @@ func _adjust_scale_factor():
 	self.position = offset
 	
 
-func _on_settings_pressed():#custom solution because of menu stacking
-	Functions.open_settings_menu_as_child_of(get_parent())
-	print("s")
-
-
-func _on_quit_pressed():
-	get_tree().quit()
-
-
-func _on_start_pressed():
-	Variables.fullrun_active=true
-	Functions.load_level_with_index(0)
-
-
-func _on_level_select_button_down():
-	Functions.load_scene("res://GUI/level_select_screen.tscn")
-
 
 func _on_button_button_down():
-	Functions.load_scene("res://GUI/credits.tscn")
+	Functions.load_scene("res://GUI/main_menu.tscn")
+
+
+func _on_label_2_meta_clicked(meta):
+	OS.shell_open("https://www.youtube.com/@dustyfurniture514")

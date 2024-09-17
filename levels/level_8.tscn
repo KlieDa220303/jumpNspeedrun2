@@ -21,6 +21,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbmxa"]
+albedo_color = Color(0.282353, 0.701961, 0, 1)
 albedo_texture = ExtResource("3_xmvre")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ud1h"]

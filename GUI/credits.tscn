@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxe2agq53euir"]
+
+[ext_resource type="Script" path="res://GUI/credits.gd" id="1_2jbjp"]
+[ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="2_p31he"]
+[ext_resource type="Script" path="res://GUI/MeshInstance3D.gd" id="3_srgpj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeag1"]
+albedo_texture = ExtResource("2_p31he")
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0hxp1"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 20.246
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu6gl"]
+albedo_texture = ExtResource("2_p31he")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_hotoe"]
+material = SubResource("StandardMaterial3D_bu6gl")
+size = Vector2(100, 100)
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2jbjp")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "return"
+
+[node name="Label3" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "credits:"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "everything else: dakl"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="ScrollContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[url=https://www.youtube.com/@dustyfurniture514]music: Dusty Furniture[/url]"
+fit_content = true
+autowrap_mode = 0
+text_direction = 3
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.66167)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.10797)
+material_override = SubResource("StandardMaterial3D_oeag1")
+mesh = SubResource("CylinderMesh_0hxp1")
+script = ExtResource("3_srgpj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.4779)
+mesh = SubResource("QuadMesh_hotoe")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.27577)
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="button_down" from="ScrollContainer/PanelContainer/VBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="meta_clicked" from="ScrollContainer/PanelContainer/VBoxContainer/Label2" to="." method="_on_label_2_meta_clicked"]

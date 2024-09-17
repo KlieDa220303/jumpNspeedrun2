@@ -13,3 +13,7 @@ func _ready():
 	#if frame>3:#count 3 frames
 		#Functions.take_screenshot()
 		#set_process(false)
+#todo
+#jump indicator
+#vredits
+#version number 1.3

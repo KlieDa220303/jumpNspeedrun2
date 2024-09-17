@@ -53,6 +53,8 @@ func _on_menu_button_down():
 @onready var best_time = $ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer2/best_time
 @onready var label_2 = $ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer2/Label2
 @onready var next_level = $ScrollContainer/PanelContainer/VBoxContainer/next_level
+@onready var label_normal = $ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer/Label
+@onready var label_best = $ScrollContainer/PanelContainer/VBoxContainer/HBoxContainer2/Label
 
 
 # Function to display the times in the formatted way
@@ -79,6 +81,8 @@ func _ready():
 	
 	#overwrite with best level if fullrun active
 	if Variables.fullrun_active==true and Variables.level==Variables.number_of_levels:
+		label_normal.text="fullrun time:"
+		label_best.text="best fullrun time:"
 		time.text = GlobalTime.format_time(GlobalTime._full_run_time)
 		
 		best_time_value = GlobalTime._best_full_run_time

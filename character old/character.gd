@@ -80,6 +80,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _physics_process(delta: float) -> void:
+	#jump indicator
+	jump_indicator.text="-"
 	
 	#settings apply 
 	camspeed=Settings.mouse_sensitivity/10000
@@ -125,6 +127,8 @@ func _physics_process(delta: float) -> void:
 			is_jumping = true
 			jumpMomentum=momentum
 			jump_start_time = Time.get_ticks_msec() / 1000.0
+		if not is_jumping:
+			jump_indicator.text="#"
 
 	#handle jump
 	if is_jumping and Input.is_action_pressed("custom jump"):
@@ -166,6 +170,8 @@ func _physics_process(delta: float) -> void:
 	#wallclimb handling
 	#if wallclimb_ray_cast.is_colliding():print("is colliding")
 	#else :print("not colldiding")
+	if not wallclimb_ray_cast.is_colliding() and wallclimb_check_cast.is_colliding() and is_on_wall():
+		jump_indicator.text="#"
 	if Input.is_action_just_pressed("custom jump") and not wallclimb_ray_cast.is_colliding() and wallclimb_check_cast.is_colliding() and is_on_wall():
 		print("jump")
 		is_jumping = true
@@ -229,7 +235,9 @@ func _physics_process(delta: float) -> void:
 	if position.y<-50 or Input.is_action_just_pressed("custom reset"):
 		GlobalTime.add_additional_time()
 		reload_current_scene()
-		
+@onready var jump_indicator = $"hud/VBoxContainer/jump indicator"
+
+
 var original_from_point:Vector3
 func start_grapple():
 	#print("character global is: ",global_position)

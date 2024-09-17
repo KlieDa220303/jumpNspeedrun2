@@ -46,7 +46,7 @@ func take_screenshot(): # Used for level screenshots
 	#img.lock()
 
 	# Resize the image to 100x100 in place (resize() returns void in Godot 4.x)
-	img.resize(100, 100)
+	img.resize(200, 200)
 
 	# Unlock the image after resizing
 	#img.unlock()

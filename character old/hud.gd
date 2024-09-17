@@ -27,3 +27,4 @@ func _process(_delta):
 func start_timer():
 	start_time = Time.get_ticks_msec()
 	running = true
+
