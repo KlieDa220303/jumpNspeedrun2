@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxe2agq53euir"]
+[gd_scene load_steps=9 format=3 uid="uid://cxe2agq53euir"]
 
 [ext_resource type="Script" path="res://GUI/credits.gd" id="1_2jbjp"]
 [ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="2_p31he"]
+[ext_resource type="Environment" uid="uid://cpk5xuwcr5gby" path="res://GUI/default_bloom_camera_environment.tres" id="2_t8vah"]
 [ext_resource type="Script" path="res://GUI/MeshInstance3D.gd" id="3_srgpj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeag1"]
@@ -77,6 +78,7 @@ text_direction = 3
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.66167)
+environment = ExtResource("2_t8vah")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.10797)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dgt68bxnu1ita"]
 
 [ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="1_1li3y"]
-[ext_resource type="PackedScene" path="res://levels/bridge.tscn" id="1_4gqpo"]
+[ext_resource type="PackedScene" uid="uid://b4idudmjb7pvr" path="res://levels/bridge.tscn" id="1_4gqpo"]
 [ext_resource type="PackedScene" uid="uid://4sb747tkh067" path="res://levels/house.tscn" id="2_1oir3"]
 [ext_resource type="PackedScene" uid="uid://cn63u78j3lcqo" path="res://levels/default_physiks_cube.tscn" id="2_gdvpn"]
 

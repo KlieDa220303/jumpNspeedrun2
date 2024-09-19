@@ -40,9 +40,13 @@ func _on_next_level_button_down():
 
 
 func _on_retry_button_down():
-	Functions.load_level_with_index(Variables.level)
-	Variables.fullrun_active=false
+	if Variables.level==Variables.number_of_levels and Variables.fullrun_active:#fullrun resetting resets to level 0
+		print("reset fullrun")
+		Functions.load_level_with_index(0)
+	else:
+		Functions.load_level_with_index(Variables.level)
 	GlobalTime.reset_additional_time()
+	Variables.fullrun_active=false
 
 
 func _on_menu_button_down():
@@ -79,18 +83,19 @@ func _ready():
 	if Variables.level==Variables.number_of_levels:
 		next_level.hide()
 	
-	#overwrite with best level if fullrun active
-	if Variables.fullrun_active==true and Variables.level==Variables.number_of_levels:
-		label_normal.text="fullrun time:"
-		label_best.text="best fullrun time:"
-		time.text = GlobalTime.format_time(GlobalTime._full_run_time)
+		print(Variables.fullrun_active,Variables.level,Variables.number_of_levels)
+		#overwrite with best level if fullrun active
+		if Variables.fullrun_active==true:
+			label_normal.text="fullrun time:"
+			label_best.text="best fullrun time:"
+			time.text = GlobalTime.format_time(GlobalTime._full_run_time)
+			
+			best_time_value = GlobalTime._best_full_run_time
+			best_time.text = GlobalTime.format_time(best_time_value)
 		
-		best_time_value = GlobalTime._best_full_run_time
-		best_time.text = GlobalTime.format_time(best_time_value)
-	
-		# Check if the current time is a new best
-		if current_time == best_time_value:
-			label_2.text = "New Best!"
-		else:
-			label_2.text = ""
+			# Check if the current time is a new best
+			if current_time == best_time_value:
+				label_2.text = "New Best!"
+			else:
+				label_2.text = ""
 

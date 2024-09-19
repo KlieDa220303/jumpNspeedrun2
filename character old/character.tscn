@@ -85,6 +85,8 @@ anchor_bottom = 1.0
 offset_top = 648.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
 script = ExtResource("3_rij35")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="hud"]
@@ -99,10 +101,12 @@ offset_top = -23.0
 offset_right = 43.5
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/separation = 10
 
 [node name="timer" type="RichTextLabel" parent="hud/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 25
 text = "00.00.00.00"
 fit_content = true
@@ -112,6 +116,7 @@ tab_size = 6
 [node name="jump indicator" type="RichTextLabel" parent="hud/VBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "_"
 fit_content = true
@@ -124,5 +129,6 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_t6k0n")
 
 [connection signal="draw_line" from="." to="tilt" method="_on_character_draw_line"]
+[connection signal="hitFloor" from="." to="tilt" method="_on_character_hit_floor"]
 [connection signal="area_shape_entered" from="Area3D" to="." method="_on_area_3d_area_shape_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -19,6 +19,12 @@ background_mode = 2
 sky = SubResource("Sky_xdw36")
 tonemap_mode = 2
 glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.15
+glow_blend_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.2
+volumetric_fog_albedo = Color(0.455389, 1, 0.446269, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbmxa"]
 albedo_color = Color(0.282353, 0.701961, 0, 1)
@@ -329,6 +335,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2, 3)
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2, 3)
 omni_range = 10.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2248, 14.3343, 12.6697)
+omni_range = 14.0
 
 [node name="default_physiks-cube" parent="." instance=ExtResource("7_13dlk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.80862, -1.40993, -25.3497)

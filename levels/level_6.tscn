@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfgjvcctqrmsf"]
+[gd_scene load_steps=13 format=3 uid="uid://dfgjvcctqrmsf"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_jkmxl"]
 [ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="3_hmxgj"]
@@ -18,9 +18,15 @@ background_mode = 2
 sky = SubResource("Sky_q1wbn")
 tonemap_mode = 2
 glow_enabled = true
+glow_bloom = 0.15
+glow_blend_mode = 1
 fog_enabled = true
 fog_light_color = Color(0.517647, 0.827451, 0.12549, 1)
 fog_light_energy = 0.25
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.373443, 0.828647, 0.535185, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcju1"]
 albedo_color = Color(0.631373, 0, 0.317647, 1)
@@ -28,6 +34,12 @@ albedo_texture = ExtResource("3_hmxgj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unko1"]
 albedo_texture = ExtResource("3_hmxgj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn3v4"]
+albedo_color = Color(0.999988, 0.365411, 0.320543, 1)
+albedo_texture = ExtResource("3_hmxgj")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xosr"]
 albedo_texture = ExtResource("3_hmxgj")
@@ -124,6 +136,7 @@ height = 30.0
 
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -13, 451, -228)
+material_override = SubResource("StandardMaterial3D_yn3v4")
 use_collision = true
 
 [node name="CSGCylinder3D4" type="CSGCylinder3D" parent="CSGCombiner3D2"]

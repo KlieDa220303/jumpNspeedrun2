@@ -29,6 +29,20 @@ func load_level_with_index(index):
 		9:load_scene("res://levels/level_9.tscn")
 		_:print("loading level wrong index given or out of range")
 
+func play_music_with_index(index):
+	match index:
+		0:pass
+		1:Music.change_track(2)
+		2:Music.change_track(3)
+		3:Music.change_track(3)
+		4:Music.change_track(3)
+		5:Music.change_track(2)
+		6:Music.change_track(2)
+		7:Music.change_track(2)
+		8:Music.change_track(3)
+		9:Music.change_track(2)
+		_:Music.change_track(1)
+
 func take_screenshot(): # Used for level screenshots
 	# Ensure the images folder exists
 	var images_folder = "user://level_images/"

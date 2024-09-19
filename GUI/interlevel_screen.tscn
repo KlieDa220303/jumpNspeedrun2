@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://sa4ov8tvndtf"]
+[gd_scene load_steps=7 format=3 uid="uid://sa4ov8tvndtf"]
 
 [ext_resource type="Script" path="res://GUI/interlevel_screen.gd" id="1_ytk2o"]
+[ext_resource type="Environment" uid="uid://cpk5xuwcr5gby" path="res://GUI/default_bloom_camera_environment.tres" id="2_6ivnv"]
+[ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="2_u42v8"]
+[ext_resource type="Script" path="res://GUI/MeshInstance3D.gd" id="3_5ctak"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_penth"]
+albedo_texture = ExtResource("2_u42v8")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_53tdm"]
+flip_faces = true
 
 [node name="interlevel_Screen" type="Control"]
 layout_mode = 3
@@ -70,6 +81,23 @@ text = "retry"
 [node name="menu" type="Button" parent="ScrollContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "return to main menu"
+
+[node name="3d enviorment" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.575, 1.5)
+environment = ExtResource("2_6ivnv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3d enviorment"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_penth")
+mesh = SubResource("BoxMesh_53tdm")
+script = ExtResource("3_5ctak")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="3d enviorment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.8)
+light_energy = 2.0
+omni_range = 4.29257
 
 [connection signal="resized" from="." to="." method="_on_resized"]
 [connection signal="button_down" from="ScrollContainer/PanelContainer/VBoxContainer/next_level" to="." method="_on_next_level_button_down"]

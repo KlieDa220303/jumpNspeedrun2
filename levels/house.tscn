@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cum3ussom82gj" path="res://textures/checkerboard1.png" id="1_o7qy5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cn6d"]
+albedo_color = Color(1, 0, 0.0196078, 1)
 albedo_texture = ExtResource("1_o7qy5")
 uv1_triplanar = true
 

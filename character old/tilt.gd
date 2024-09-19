@@ -13,11 +13,15 @@ func _ready():
 	pass
 
 func _on_character_hit_floor(impactstrenght):
-	print("impacted floor with",impactstrenght)
+	print("impacted floor with ",impactstrenght)
 	if impactstrenght<-5:#minimum threshhold
-		if impactstrenght>20:
-			impactstrenght=20
+		if impactstrenght<-40:
+			impactstrenght=40
 		position.y+=impactstrenght/20
+	if impactstrenght<0:
+		impactstrenght*=-1
+	if impactstrenght>1:
+		Sfx.play_jump_sound_effect_with_volume(impactstrenght*5)
 	
 
 func _process(delta: float):

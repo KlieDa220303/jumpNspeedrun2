@@ -13,7 +13,7 @@ config_version=5
 config/name="jumpNspeedrun2"
 run/main_scene="res://GUI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://textures/JS2.png"
 
 [autoload]
 
@@ -22,6 +22,7 @@ Settings="*res://settings.gd"
 Variables="*res://Variables.gd"
 Music="*res://Music.tscn"
 GlobalTime="*res://Time.tscn"
+Sfx="*res://sfx.tscn"
 
 [input]
 

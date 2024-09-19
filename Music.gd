@@ -8,7 +8,7 @@ extends Node
 @export var track_3: AudioStream#indoors
 
 # Variable to keep track of the current track
-var current_track: int = 1
+var current_track: int = 0
 
 func _ready():
 	# Start playing the first track
@@ -16,19 +16,20 @@ func _ready():
 
 # Function to change the track
 func change_track(track_number: int) -> void:
-	match track_number:
-		1:
-			music_player.stream = track_1
-		2:
-			music_player.stream = track_2
-		3:
-			music_player.stream = track_3
-		_:
-			print("Invalid track number:", track_number," switching to track 1")
-			music_player.stream = track_1
-	
-	current_track = track_number
-	music_player.play()
+	if track_number!=current_track:
+		match track_number:
+			1:
+				music_player.stream = track_1
+			2:
+				music_player.stream = track_2
+			3:
+				music_player.stream = track_3
+			_:
+				print("Invalid track number:", track_number," switching to track 1")
+				music_player.stream = track_1
+		
+		current_track = track_number
+		music_player.play()
 
 # Example: Music.changetrack(1)
 

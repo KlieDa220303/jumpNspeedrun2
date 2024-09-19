@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn6tynx3fiaur"]
+
+[ext_resource type="Script" path="res://sfx.gd" id="1_0tpsq"]
+[ext_resource type="AudioStream" uid="uid://bxa1ad7nbjdi1" path="res://music/jump.mp3" id="2_4iypl"]
+
+[node name="SFX" type="Node"]
+script = ExtResource("1_0tpsq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4iypl")
+pitch_scale = 0.6
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

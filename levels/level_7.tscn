@@ -18,9 +18,16 @@ background_mode = 2
 sky = SubResource("Sky_rvv5j")
 tonemap_mode = 2
 glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.15
+glow_blend_mode = 1
 fog_enabled = true
-fog_light_color = Color(0.482353, 0.552941, 0.607843, 1)
+fog_light_color = Color(0.439794, 0.76952, 0.686481, 1)
 fog_light_energy = 0.2
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.015
+volumetric_fog_albedo = Color(0.592157, 0.882353, 0.886275, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlrbd"]
 albedo_color = Color(0.521569, 0.843137, 0.501961, 1)
