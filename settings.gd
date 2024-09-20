@@ -61,7 +61,8 @@ func apply_settings():
 	if fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else :
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		pass
+		#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
 	# Apply music and sfx volume settings
 	Music.set_Volume(music_volume)
@@ -70,15 +71,21 @@ func apply_settings():
 	# Apply mouse sensitivity setting is used in game logic)
 	# Apply input maps
 	for i in range(button_names.size()):
+		
 		var action_name = button_names[i]
 		InputMap.action_erase_events(action_name)
-		
+		if buttons[i] is InputEvent:
+			print("valid button")
+		else:
+			print("null found in buttons getting input from default")
+			load_defaullt_settings()
 		# Iterate over each InputEvent in buttons[i]
 		if buttons[i] is InputEvent:
 			InputMap.action_add_event(action_name, buttons[i])
 			print("Added event:", buttons[i], "to:", action_name)
 				
 		else :
+			print("not a valid input event trying different aproach")
 			for event in buttons[i]:#when a error ocurs here it is probably a null value in the saves
 				if event is InputEvent:
 					InputMap.action_add_event(action_name, event)

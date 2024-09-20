@@ -234,6 +234,7 @@ func _physics_process(delta: float) -> void:
 	#reset
 	if position.y<-50 or Input.is_action_just_pressed("custom reset"):
 		GlobalTime.add_additional_time()
+		GlobalTime.start_time=0
 		reload_current_scene()
 @onready var jump_indicator = $"hud/VBoxContainer/jump indicator"
 
