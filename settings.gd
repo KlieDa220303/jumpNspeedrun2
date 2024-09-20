@@ -12,11 +12,26 @@ var button_names:Array=["custom up","custom left","custom down","custom right","
 
 # Path to the settings file
 @onready var settings_file_path: String = "user://settings.cfg"
-@onready var default_settings_file_path: String = "res://default_settings.cfg"
+@onready var default_settings_file_path: String = "user://default_settings.cfg"
+@onready var static_default_settings_file_path: String = "res://default_settings.cfg"
 
 func _ready() -> void:
+	clone_default_settings()
 	load_settings()
 	save_settings()
+
+# Function to clone default settings to user:// on first startup
+func clone_default_settings() -> void:
+	# Load the default settings from res://default_settings.cfg
+	var config = ConfigFile.new()
+	var err = config.load(static_default_settings_file_path)
+	
+	if err == OK:
+		# Save the settings to user://default_settings.cfg
+		config.save(default_settings_file_path)
+		print("Default settings cloned to:", settings_file_path)
+	else:
+		print("Failed to load default settings from:", default_settings_file_path)
 
 func load_settings() -> void:
 	var config = ConfigFile.new()
