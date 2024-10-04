@@ -6,32 +6,29 @@ var music_volume: float = 100
 var sfx_volume: float = 100
 var fov: float = 70.0
 var mouse_sensitivity: float = 100
-var buttons:Array=[InputEventKey.new(),null,null,null,null,null,null,null,null,null]
+var buttons:Array=[null,null,null,null,null,null,null,null,null,null]
 var button_names:Array=["custom up","custom left","custom down","custom right","custom jump","custom esc","custom interact","custom slide","custom reset"]
 
 
 # Path to the settings file
 @onready var settings_file_path: String = "user://settings.cfg"
 @onready var default_settings_file_path: String = "user://default_settings.cfg"
-@onready var static_default_settings_file_path: String = "res://default_settings.cfg"
 
 func _ready() -> void:
-	clone_default_settings()
+	get_hard_default_inputs()
 	load_settings()
 	save_settings()
-
-# Function to clone default settings to user:// on first startup
-func clone_default_settings() -> void:
-	# Load the default settings from res://default_settings.cfg
-	var config = ConfigFile.new()
-	var err = config.load(static_default_settings_file_path)
 	
-	if err == OK:
-		# Save the settings to user://default_settings.cfg
-		config.save(default_settings_file_path)
-		print("Default settings cloned to:", settings_file_path)
-	else:
-		print("Failed to load default settings from:", default_settings_file_path)
+
+var hard_default_inputs:Array
+func get_hard_default_inputs():
+	hard_default_inputs.resize(button_names.size())
+	for i in range(button_names.size()):
+		var action_name = button_names[i]
+		if InputMap.has_action(action_name):
+			print("action found",InputMap.action_get_events(action_name))
+			hard_default_inputs[i]=InputMap.action_get_events(action_name)
+	print("sucessfully loaded hard default settings")
 
 func load_settings() -> void:
 	var config = ConfigFile.new()
@@ -48,15 +45,31 @@ func load_settings() -> void:
 		load_defaullt_settings()
 
 func load_defaullt_settings() -> void:
-	var config = ConfigFile.new()
-	var err = config.load(default_settings_file_path)
-	if err == OK:
-		fullscreen = config.get_value("display", "fullscreen", fullscreen)
-		music_volume = config.get_value("audio", "music_volume", music_volume)
-		sfx_volume = config.get_value("audio", "sfx_volume", sfx_volume)
-		fov = config.get_value("gameplay", "fov", fov)
-		mouse_sensitivity = config.get_value("controls", "mouse_sensitivity", mouse_sensitivity)
-		buttons=config.get_value("controls","buttons",buttons)
+	#var config = ConfigFile.new()
+	#var err = config.load(default_settings_file_path)
+	#if err == OK:
+		#fullscreen = config.get_value("display", "fullscreen", fullscreen)
+		#music_volume = config.get_value("audio", "music_volume", music_volume)
+		#sfx_volume = config.get_value("audio", "sfx_volume", sfx_volume)
+		#fov = config.get_value("gameplay", "fov", fov)
+		#mouse_sensitivity = config.get_value("controls", "mouse_sensitivity", mouse_sensitivity)
+		#buttons=config.get_value("controls","buttons",buttons)
+	#else :print("failed loading default settings err: ",err)
+	
+	# Default hardcoded values 
+	var default_music_volume = 100
+	var default_sfx_volume = 100
+	var default_fov = 90
+	var default_mouse_sensitivity = 50
+	music_volume = default_music_volume
+	sfx_volume = default_sfx_volume
+	fov = default_fov
+	mouse_sensitivity = default_mouse_sensitivity
+
+	# Load inputs from InputMap for control not implemented
+	for i in range(button_names.size()):
+		buttons[i]=hard_default_inputs[i]
+
 
 func save_settings() -> void:
 	var config = ConfigFile.new()
@@ -88,26 +101,31 @@ func apply_settings():
 	for i in range(button_names.size()):
 		
 		var action_name = button_names[i]
-		InputMap.action_erase_events(action_name)
 		if buttons[i] is InputEvent:
 			print("valid button")
 		else:
-			print("null found in buttons getting input from default")
-			load_defaullt_settings()
+			pass
+			#break
+		InputMap.action_erase_events(action_name)
 		# Iterate over each InputEvent in buttons[i]
 		if buttons[i] is InputEvent:
 			InputMap.action_add_event(action_name, buttons[i])
-			print("Added event:", buttons[i], "to:", action_name)
+			print("valid button: Added event:", buttons[i], "to:", action_name)
 				
-		else :
+		elif buttons[i] is Array:
 			print("not a valid input event trying different aproach")
 			for event in buttons[i]:#when a error ocurs here it is probably a null value in the saves
 				if event is InputEvent:
 					InputMap.action_add_event(action_name, event)
-					print("Added event:", event, "to:", action_name)
+					print("(try2)Added event:", event, "to:", action_name)
 				else:
 					print("Invalid event type for action:", action_name, "Event:", event)
-
+		else:
+			print("button is not a InputEvent getting input from default")
+			if InputMap.has_action(action_name):
+				print("action found",InputMap.action_get_events(action_name))
+				buttons[i]=InputMap.action_get_events(action_name)
+				
 #freeze and show settings menu
 @export var settings_menu_scene=preload("res://GUI/settings_panel.tscn")
 func open_settings_menu():
